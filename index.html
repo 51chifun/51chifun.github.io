@@ -4,121 +4,221 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>51chifun's blog 资源 CDN</title>
-  <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    /* 默认：Material Design 3 浅色绿主题 (Light Green) */
     :root {
-      --md-sys-color-primary: #386A20;
-      --md-sys-color-on-primary: #FFFFFF;
-      --md-sys-color-primary-container: #B8F397;
-      --md-sys-color-on-primary-container: #042100;
-      --md-sys-color-secondary-container: #D9E7CB;
-      --md-sys-color-on-secondary-container: #131F0D;
-      --md-sys-color-surface: #FDFDF5;
-      --md-sys-color-surface-container-low: #F7F6EE;
-      --md-sys-color-surface-container: #F1F1E9;
-      --md-sys-color-surface-container-high: #ECEBE3;
-      --md-sys-color-surface-container-highest: #E6E5DD;
-      --md-sys-color-on-surface: #1A1C18;
-      --md-sys-color-outline: #74796D;
+      --primary: #386A20;
+      --on-primary: #FFFFFF;
+      --primary-container: #B8F397;
+      --secondary-container: #D9E7CB;
+      --on-secondary-container: #131F0D;
+      --surface: #FDFDF5;
+      --surface-low: #F7F6EE;
+      --surface-container: #F1F1E9;
+      --on-surface: #1A1C18;
+      --outline: #74796D;
+      --border: rgba(0, 0, 0, 0.05);
     }
 
-    /* 深色模式：当 html 标签带有 class="dark" 时生效 */
     html.dark {
-      --md-sys-color-primary: #9CD67D;
-      --md-sys-color-on-primary: #0F3900;
-      --md-sys-color-primary-container: #205107;
-      --md-sys-color-on-primary-container: #B8F397;
-      --md-sys-color-secondary-container: #3B4B34;
-      --md-sys-color-on-secondary-container: #D9E7CB;
-      --md-sys-color-surface: #11140E;
-      --md-sys-color-surface-container-low: #191C16;
-      --md-sys-color-surface-container: #1D211A;
-      --md-sys-color-surface-container-high: #282B24;
-      --md-sys-color-surface-container-highest: #33362F;
-      --md-sys-color-on-surface: #E2E3DC;
-      --md-sys-color-outline: #8D9386;
+      --primary: #9CD67D;
+      --on-primary: #0F3900;
+      --primary-container: #205107;
+      --secondary-container: #3B4B34;
+      --on-secondary-container: #D9E7CB;
+      --surface: #11140E;
+      --surface-low: #191C16;
+      --surface-container: #1D211A;
+      --on-surface: #E2E3DC;
+      --outline: #8D9386;
+      --border: rgba(255, 255, 255, 0.1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     body {
-      /* 直接调用系统自带字体（Mac 苹方 / Win 微软雅黑 / 移动端系统默认） */
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
-      background-color: var(--md-sys-color-surface);
-      color: var(--md-sys-color-on-surface);
-      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+      background-color: var(--surface);
+      color: var(--on-surface);
       padding: 2rem;
-      transition: background-color 0.3s ease, color 0.3s ease;
+      line-height: 1.5;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    main {
+      max-width: 64rem;
+      margin: 2rem auto 0;
+    }
+
+    article {
+      max-width: 48rem;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      background-color: var(--secondary-container);
+      color: var(--on-secondary-container);
+    }
+
+    h1 {
+      font-size: 1.875rem;
+      font-weight: 700;
+      margin-top: 0.25rem;
+    }
+
+    p {
+      opacity: 0.9;
+    }
+
+    blockquote {
+      padding: 1.25rem;
+      border-radius: 1rem;
+      border-left: 4px solid var(--primary);
+      background-color: var(--surface-container);
+      font-style: italic;
+      font-size: 0.875rem;
+    }
+
+    .card {
+      max-width: 28rem;
+      border-radius: 24px;
+      overflow: hidden;
+      background-color: var(--surface-low);
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    .card img {
+      width: 100%;
+      height: 12rem;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-body {
+      padding: 1.5rem;
+    }
+
+    .card-body span {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      opacity: 0.7;
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    .card-body h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-body p {
+      font-size: 0.875rem;
+      opacity: 0.8;
+      margin-bottom: 1.5rem;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.75rem;
+    }
+
+    .btn {
+      padding: 0.5rem 1.25rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    .btn:hover {
+      opacity: 0.8;
+    }
+
+    .btn-outline {
+      border: 1px solid var(--outline);
+      color: var(--primary);
+    }
+
+    .btn-filled {
+      background-color: var(--primary);
+      color: var(--on-primary);
+    }
+
+    #theme-toggle {
+      position: fixed;
+      top: 1.5rem;
+      right: 1.5rem;
+      padding: 0.75rem;
+      border-radius: 9999px;
+      border: 1px solid var(--border);
+      background-color: var(--secondary-container);
+      color: var(--on-secondary-container);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    svg {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+
+    .hidden {
+      display: none !important;
     }
   </style>
   <script>
-    // 页面加载前优先读取本地记忆或系统偏好，防止闪白屏
     (function() {
-      const savedTheme = localStorage.getItem('theme');
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+      if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
         document.documentElement.classList.add('dark');
       }
     })();
   </script>
 </head>
-<body data-color-scheme="green">
+<body>
 
-  <!-- 右上角深浅色切换按钮 -->
-  <button id="theme-toggle" aria-label="切换深浅色模式"
-    class="fixed top-6 right-6 p-3 rounded-full shadow-sm border border-black/5 dark:border-white/10 transition hover:opacity-80 active:scale-95"
-    style="background-color: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container);">
-    <!-- 太阳图标（深色模式下显示，点击切回浅色） -->
-    <svg id="icon-sun" class="w-5 h-5 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-      <circle cx="12" cy="12" r="5"></circle>
-      <path stroke-linecap="round" stroke-linejoin="round" d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>
-    </svg>
-    <!-- 月亮图标（浅色模式下显示，点击切到深色） -->
-    <svg id="icon-moon" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-    </svg>
+  <button id="theme-toggle" aria-label="切换深浅色模式">
+    <svg id="icon-sun" class="hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"></circle><path stroke-linecap="round" stroke-linejoin="round" d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path></svg>
+    <svg id="icon-moon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
   </button>
 
-  <main class="max-w-5xl mx-auto mt-8">
-    <article class="max-w-3xl mx-auto space-y-6">
-      <div class="space-y-2">
-        <span class="inline-block px-3 py-1 rounded-full text-xs font-medium transition-colors"
-          style="background-color: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container);">CDN</span>
-        <h1 class="text-3xl font-bold pt-1">51chifun's blog 资源 CDN</h1>
-        <p class="text-xs opacity-65">CDN 主页 · 51chifun's blog</p>
+  <main>
+    <article>
+      <div>
+        <span class="badge">CDN</span>
+        <h1>51chifun's blog 资源 CDN</h1>
+        <p style="font-size: 0.75rem; opacity: 0.65;">CDN 主页 · 51chifun's blog</p>
       </div>
 
-      <p class="text-base leading-relaxed opacity-90">国内图床老倒闭，一些网盘防盗链教程过几天就失效了，所以还是自己折腾一下保险。</p>
+      <p>国内图床老倒闭，一些网盘防盗链教程过几天就失效了，所以还是自己折腾一下保险。</p>
 
-      <blockquote class="p-5 rounded-2xl border-l-4 italic text-sm transition-colors"
-        style="background-color: var(--md-sys-color-surface-container); border-color: var(--md-sys-color-primary);">
-        使用 GitHub 仓库托管图片，使用 EdgeOne CDN 加速
-      </blockquote>
+      <blockquote>使用 GitHub 仓库托管图片，使用 EdgeOne CDN 加速</blockquote>
 
-      <!-- Material 3 Elevated 图文卡片 -->
-      <div
-        class="my-6 max-w-md rounded-[24px] overflow-hidden shadow-md border border-black/5 dark:border-white/10 transition hover:shadow-lg"
-        style="background-color: var(--md-sys-color-surface-container-low);">
-        <img
-          src="/index-img.avif"
-          alt="51chifun CDN Cover" class="w-full h-48 object-cover"
-          onerror="this.onerror=null;this.src=`data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='300' viewBox='0 0 600 300'><rect width='100%' height='100%' fill='%23205107'/><path fill='%23B8F397' d='m132.195 136.115-1.46 8.58q1.37-.28 2.63-.41 1.25-.13 2.42-.13 3.25 0 5.73.97t4.16 2.68 2.53 4q.86 2.3.86 4.95 0 3.27-1.15 5.98-1.16 2.71-3.21 4.63-2.05 1.93-4.86 2.98-2.81 1.06-6.11 1.06-1.94 0-3.68-.4t-3.26-1.07q-1.53-.67-2.82-1.54-1.3-.87-2.33-1.84l2.17-2.99q.68-.97 1.79-.97.72 0 1.46.46.74.45 1.69.99.96.54 2.25 1 1.3.46 3.13.46 1.93 0 3.42-.63 1.48-.63 2.46-1.75.98-1.13 1.48-2.68.5-1.56.5-3.38 0-3.36-1.95-5.26-1.95-1.89-5.77-1.89-2.94 0-6.02 1.08l-4.38-1.25 3.42-20.01h20.34v2.99q0 1.51-.94 2.45t-3.19.94zm42.12 29.56h7.41v5.27h-22.8v-5.27h8.35v-24.03q0-1.42.09-2.93l-5.93 4.96q-.51.39-1.01.49t-.94.02q-.45-.09-.79-.3t-.51-.47l-2.22-3.05 12.56-10.69h5.79zm37.25-20.35-1.85 2.56q-.32.4-.62.63-.29.23-.86.23-.55 0-1.06-.33t-1.22-.74q-.72-.41-1.7-.74t-2.44-.33q-1.85 0-3.25.67-1.39.67-2.32 1.92-.93 1.26-1.38 3.04-.46 1.78-.46 4.03 0 2.34.5 4.16.5 1.83 1.44 3.07t2.28 1.88 3.02.64 2.72-.41q1.04-.42 1.76-.92.71-.49 1.24-.91.52-.41 1.18-.41.85 0 1.28.65l2.02 2.57q-1.16 1.37-2.53 2.29-1.37.93-2.84 1.49-1.47.55-3.02.78t-3.09.23q-2.71 0-5.1-1.01-2.4-1.02-4.19-2.95-1.8-1.94-2.84-4.75t-1.04-6.4q0-3.22.93-5.97.92-2.75 2.72-4.76t4.45-3.15 6.1-1.14q3.27 0 5.74 1.06 2.46 1.05 4.43 3.02m11.71-16.73v16.24q1.71-1.59 3.77-2.59 2.05-1 4.81-1 2.4 0 4.25.82 1.85.81 3.09 2.28 1.24 1.46 1.88 3.5t.64 4.49v18.61h-7.04v-18.61q0-2.68-1.22-4.15-1.23-1.47-3.74-1.47-1.82 0-3.42.83-1.59.83-3.02 2.25v21.15h-7.04v-42.35zm25.34 13.11h7.07v29.24h-7.07zm8.04-8.52q0 .91-.37 1.71t-.99 1.39q-.61.6-1.44.96-.82.36-1.76.36-.92 0-1.73-.36t-1.41-.96q-.6-.59-.95-1.39-.36-.8-.36-1.71 0-.94.36-1.77.35-.83.95-1.42.6-.6 1.41-.96t1.73-.36q.94 0 1.76.36.83.36 1.44.96.62.59.99 1.42t.37 1.77m15.3 37.76h-7.04v-23.94l-2.53-.4q-.83-.17-1.33-.58-.5-.42-.5-1.19v-2.87h4.36v-2.17q0-2.51.76-4.5.75-2 2.16-3.4 1.41-1.39 3.44-2.13 2.02-.74 4.56-.74 2.02 0 3.76.54l-.14 3.53q-.03.4-.23.64-.2.25-.53.37-.33.13-.75.17-.43.05-.92.05-1.25 0-2.23.27-.99.27-1.67.94t-1.04 1.77q-.36 1.09-.36 2.72v1.94h7.61v5.01h-7.38zm29.5-29.24h7.04v29.24h-4.31q-1.39 0-1.76-1.28l-.49-2.34q-1.79 1.82-3.96 2.95-2.16 1.13-5.1 1.13-2.39 0-4.23-.82-1.84-.81-3.09-2.29-1.26-1.48-1.9-3.52t-.64-4.49v-18.58h7.04v18.58q0 2.68 1.24 4.15t3.72 1.47q1.82 0 3.42-.82 1.59-.81 3.02-2.23zm20.09 1.28.49 2.31q.88-.88 1.86-1.64.99-.75 2.08-1.28 1.1-.53 2.35-.83 1.26-.3 2.74-.3 2.39 0 4.25.82 1.85.81 3.09 2.28 1.24 1.46 1.88 3.5t.64 4.49v18.61h-7.04v-18.61q0-2.68-1.22-4.15-1.23-1.47-3.74-1.47-1.82 0-3.42.83-1.59.83-3.02 2.25v21.15h-7.04v-29.24h4.31q1.36 0 1.79 1.28m69.31 18.24q.63 0 1.11.49l3.03 3.27q-2.51 3.11-6.17 4.76-3.67 1.66-8.8 1.66-4.59 0-8.25-1.57t-6.25-4.36q-2.6-2.8-3.98-6.67-1.38-3.88-1.38-8.47 0-4.64 1.48-8.5t4.18-6.66q2.69-2.79 6.42-4.34 3.74-1.56 8.27-1.56 4.5 0 7.99 1.48 3.49 1.49 5.94 3.88l-2.56 3.56q-.23.35-.58.6-.36.26-.99.26-.43 0-.88-.24-.46-.25-1-.6-.54-.36-1.25-.79-.72-.42-1.66-.78t-2.18-.6-2.86-.24q-2.77 0-5.06.98-2.29.99-3.95 2.85-1.65 1.87-2.56 4.56-.91 2.7-.91 6.14 0 3.48.98 6.19t2.66 4.56q1.69 1.85 3.97 2.83 2.28.99 4.9.99 1.57 0 2.83-.17 1.27-.17 2.34-.54 1.07-.38 2.02-.96.96-.58 1.9-1.44.28-.26.6-.41.31-.16.65-.16m46-10.89q0 4.54-1.51 8.33t-4.24 6.52q-2.74 2.74-6.59 4.25t-8.55 1.51h-15.7v-41.21h15.7q4.7 0 8.55 1.52 3.85 1.53 6.59 4.25 2.73 2.72 4.24 6.51t1.51 8.32m-7.86 0q0-3.39-.9-6.08t-2.59-4.56q-1.7-1.87-4.11-2.86-2.41-1-5.43-1h-8.01v29.01h8.01q3.02 0 5.43-1 2.41-.99 4.11-2.86 1.69-1.87 2.59-4.56t.9-6.09m42.6-20.6h6.76v41.21h-3.93q-.92 0-1.53-.3t-1.18-1.01l-21.52-27.48q.17 1.89.17 3.48v25.31h-6.75v-41.21h4.02q.48 0 .84.04.35.04.62.17t.53.37q.26.25.57.64l21.6 27.59q-.08-1-.14-1.96-.06-.97-.06-1.8z'/></svg>`">
-        <div class="p-6">
-          <div class="text-xs font-medium uppercase tracking-wider opacity-70 mb-1">GitHub 仓库</div>
-          <h3 class="text-xl font-bold mb-2">图片可随意下载嵌入他人文章</h3>
-          <p class="text-sm opacity-80 leading-relaxed mb-6">无任何版权限制，文章也可以随便转载。</p>
-          
-          <!-- 按钮区 -->
-          <div class="flex items-center justify-end gap-3">
-            <a href="https://github.com/51chifun/resources-cdn" target="_blank" rel="noopener noreferrer"
-              class="px-5 py-2 rounded-full text-xs font-medium border transition hover:opacity-80"
-              style="border-color: var(--md-sys-color-outline); color: var(--md-sys-color-primary);">
-              打开 GitHub 仓库
-            </a>
-            <a href="https://51chifun.de" target="_blank" rel="noopener noreferrer"
-              class="px-5 py-2 rounded-full text-xs font-medium transition hover:opacity-90"
-              style="background-color: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary);">
-              访问博客主站
-            </a>
+      <div class="card">
+        <img src="https://resources-cdn.51chifun.de/index-img.avif" alt="Cover" onerror="this.onerror=null;this.src=`data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='300' viewBox='0 0 600 300'><rect width='100%' height='100%' fill='%23205107'/><path fill='%23B8F397' d='m132.195 136.115-1.46 8.58q1.37-.28 2.63-.41 1.25-.13 2.42-.13 3.25 0 5.73.97t4.16 2.68 2.53 4q.86 2.3.86 4.95 0 3.27-1.15 5.98-1.16 2.71-3.21 4.63-2.05 1.93-4.86 2.98-2.81 1.06-6.11 1.06-1.94 0-3.68-.4t-3.26-1.07q-1.53-.67-2.82-1.54-1.3-.87-2.33-1.84l2.17-2.99q.68-.97 1.79-.97.72 0 1.46.46.74.45 1.69.99.96.54 2.25 1 1.3.46 3.13.46 1.93 0 3.42-.63 1.48-.63 2.46-1.75.98-1.13 1.48-2.68.5-1.56.5-3.38 0-3.36-1.95-5.26-1.95-1.89-5.77-1.89-2.94 0-6.02 1.08l-4.38-1.25 3.42-20.01h20.34v2.99q0 1.51-.94 2.45t-3.19.94zm42.12 29.56h7.41v5.27h-22.8v-5.27h8.35v-24.03q0-1.42.09-2.93l-5.93 4.96q-.51.39-1.01.49t-.94.02q-.45-.09-.79-.3t-.51-.47l-2.22-3.05 12.56-10.69h5.79zm37.25-20.35-1.85 2.56q-.32.4-.62.63-.29.23-.86.23-.55 0-1.06-.33t-1.22-.74q-.72-.41-1.7-.74t-2.44-.33q-1.85 0-3.25.67-1.39.67-2.32 1.92-.93 1.26-1.38 3.04-.46 1.78-.46 4.03 0 2.34.5 4.16.5 1.83 1.44 3.07t2.28 1.88 3.02.64 2.72-.41q1.04-.42 1.76-.92.71-.49 1.24-.91.52-.41 1.18-.41.85 0 1.28.65l2.02 2.57q-1.16 1.37-2.53 2.29-1.37.93-2.84 1.49-1.47.55-3.02.78t-3.09.23q-2.71 0-5.1-1.01-2.4-1.02-4.19-2.95-1.8-1.94-2.84-4.75t-1.04-6.4q0-3.22.93-5.97.92-2.75 2.72-4.76t4.45-3.15 6.1-1.14q3.27 0 5.74 1.06 2.46 1.05 4.43 3.02m11.71-16.73v16.24q1.71-1.59 3.77-2.59 2.05-1 4.81-1 2.4 0 4.25.82 1.85.81 3.09 2.28 1.24 1.46 1.88 3.5t.64 4.49v18.61h-7.04v-18.61q0-2.68-1.22-4.15-1.23-1.47-3.74-1.47-1.82 0-3.42.83-1.59.83-3.02 2.25v21.15h-7.04v-42.35zm25.34 13.11h7.07v29.24h-7.07zm8.04-8.52q0 .91-.37 1.71t-.99 1.39q-.61.6-1.44.96-.82.36-1.76.36-.92 0-1.73-.36t-1.41-.96q-.6-.59-.95-1.39-.36-.8-.36-1.71 0-.94.36-1.77.35-.83.95-1.42.6-.6 1.41-.96t1.73-.36q.94 0 1.76.36.83.36 1.44.96.62.59.99 1.42t.37 1.77m15.3 37.76h-7.04v-23.94l-2.53-.4q-.83-.17-1.33-.58-.5-.42-.5-1.19v-2.87h4.36v-2.17q0-2.51.76-4.5.75-2 2.16-3.4 1.41-1.39 3.44-2.13 2.02-.74 4.56-.74 2.02 0 3.76.54l-.14 3.53q-.03.4-.23.64-.2.25-.53.37-.33.13-.75.17-.43.05-.92.05-1.25 0-2.23.27-.99.27-1.67.94t-1.04 1.77q-.36 1.09-.36 2.72v1.94h7.61v5.01h-7.38zm29.5-29.24h7.04v29.24h-4.31q-1.39 0-1.76-1.28l-.49-2.34q-1.79 1.82-3.96 2.95-2.16 1.13-5.1 1.13-2.39 0-4.23-.82-1.84-.81-3.09-2.29-1.26-1.48-1.9-3.52t-.64-4.49v-18.58h7.04v18.58q0 2.68 1.24 4.15t3.72 1.47q1.82 0 3.42-.82 1.59-.81 3.02-2.23zm20.09 1.28.49 2.31q.88-.88 1.86-1.64.99-.75 2.08-1.28 1.1-.53 2.35-.83 1.26-.3 2.74-.3 2.39 0 4.25.82 1.85.81 3.09 2.28 1.24 1.46 1.88 3.5t.64 4.49v18.61h-7.04v-18.61q0-2.68-1.22-4.15-1.23-1.47-3.74-1.47-1.82 0-3.42.83-1.59.83-3.02 2.25v21.15h-7.04v-29.24h4.31q1.36 0 1.79 1.28m69.31 18.24q.63 0 1.11.49l3.03 3.27q-2.51 3.11-6.17 4.76-3.67 1.66-8.8 1.66-4.59 0-8.25-1.57t-6.25-4.36q-2.6-2.8-3.98-6.67-1.38-3.88-1.38-8.47 0-4.64 1.48-8.5t4.18-6.66q2.69-2.79 6.42-4.34 3.74-1.56 8.27-1.56 4.5 0 7.99 1.48 3.49 1.49 5.94 3.88l-2.56 3.56q-.23.35-.58.6-.36.26-.99.26-.43 0-.88-.24-.46-.25-1-.6-.54-.36-1.25-.79-.72-.42-1.66-.78t-2.18-.6-2.86-.24q-2.77 0-5.06.98-2.29.99-3.95 2.85-1.65 1.87-2.56 4.56-.91 2.7-.91 6.14 0 3.48.98 6.19t2.66 4.56q1.69 1.85 3.97 2.83 2.28.99 4.9.99 1.57 0 2.83-.17 1.27-.17 2.34-.54 1.07-.38 2.02-.96.96-.58 1.9-1.44.28-.26.6-.41.31-.16.65-.16m46-10.89q0 4.54-1.51 8.33t-4.24 6.52q-2.74 2.74-6.59 4.25t-8.55 1.51h-15.7v-41.21h15.7q4.7 0 8.55 1.52 3.85 1.53 6.59 4.25 2.73 2.72 4.24 6.51t1.51 8.32m-7.86 0q0-3.39-.9-6.08t-2.59-4.56q-1.7-1.87-4.11-2.86-2.41-1-5.43-1h-8.01v29.01h8.01q3.02 0 5.43-1 2.41-.99 4.11-2.86 1.69-1.87 2.59-4.56t.9-6.09m42.6-20.6h6.76v41.21h-3.93q-.92 0-1.53-.3t-1.18-1.01l-21.52-27.48q.17 1.89.17 3.48v25.31h-6.75v-41.21h4.02q.48 0 .84.04.35.04.62.17t.53.37q.26.25.57.64l21.6 27.59q-.08-1-.14-1.96-.06-.97-.06-1.8z`">
+        <div class="card-body">
+          <span>GitHub 仓库</span>
+          <h3>图片可随意下载嵌入他人文章</h3>
+          <p>无任何版权限制，文章也可以随便转载。</p>
+          <div class="actions">
+            <a href="https://github.com/51chifun/resources-cdn" target="_blank" rel="noopener noreferrer" class="btn btn-outline">打开 GitHub 仓库</a>
+            <a href="https://51chifun.de" target="_blank" rel="noopener noreferrer" class="btn btn-filled">访问博客主站</a>
           </div>
         </div>
       </div>
@@ -126,31 +226,26 @@
   </main>
 
   <script>
-    const toggleBtn = document.getElementById('theme-toggle');
-    const iconSun = document.getElementById('icon-sun');
-    const iconMoon = document.getElementById('icon-moon');
-    const htmlEl = document.documentElement;
+    const btn = document.getElementById('theme-toggle');
+    const sun = document.getElementById('icon-sun');
+    const moon = document.getElementById('icon-moon');
+    const html = document.documentElement;
 
-    // 根据当前状态更新按钮图标
-    function updateIcons() {
-      if (htmlEl.classList.contains('dark')) {
-        iconSun.classList.remove('hidden');
-        iconMoon.classList.add('hidden');
+    function update() {
+      if (html.classList.contains('dark')) {
+        sun.classList.remove('hidden');
+        moon.classList.add('hidden');
       } else {
-        iconSun.classList.add('hidden');
-        iconMoon.classList.remove('hidden');
+        sun.classList.add('hidden');
+        moon.classList.remove('hidden');
       }
     }
+    update();
 
-    // 初始化图标状态
-    updateIcons();
-
-    // 点击切换深浅色并保存到本地
-    toggleBtn.addEventListener('click', () => {
-      htmlEl.classList.toggle('dark');
-      const isDark = htmlEl.classList.contains('dark');
-      localStorage.setItem('theme', isDark ? 'dark' : 'light');
-      updateIcons();
+    btn.addEventListener('click', () => {
+      html.classList.toggle('dark');
+      localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+      update();
     });
   </script>
 </body>
